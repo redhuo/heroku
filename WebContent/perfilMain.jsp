@@ -7,32 +7,47 @@
         <title>Perfil</title>
         <meta name ="viewport" content="width-device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale = 1.0">
         <style>
-        <style>
-h3.visible {
-    visibility: visible
-}
-
-h3.hidden {
-    visibility: hidden
-}
-
             #head{
                 background-color:black;
                 color:white;
                 text-align:center;
                 padding:5px;}
+
             #panel {
                 line-height:30px;
                 background-color:#eeeeee;
-                height: 500px;
-                width:10%px;
+                height: 260px;
+                width:10%;
                 float:left;
-                padding:5px;	      
+                padding:5px;
+                box-sizing: border-box;
+            }
+
+            #pane {
+                line-height:30px;
+                background-color:#eeeeee;
+                height: 60px;
+                width:30%;
+                float:left;
+                padding:5px;
+                box-sizing: border-box;
+            }
+            #pan {
+                line-height:30px;
+                background-color:#eeeeee;
+                height: 60px;
+                width:30%;
+                float:left;
+                padding:5px;
+                box-sizing: border-box;
             }
             #cont {
-                width:350px;    
+                width:30%;
                 float:left;
-                padding:10px;	 	 
+                padding:11px;	 
+                margin: 0 auto;
+                overflow: hidden;
+                box-sizing: border-box;
             }
             body {
                 background-color: #99CCFF;
@@ -41,10 +56,11 @@ h3.hidden {
             div.title{
                 margin-left: 170px;
                 margin-top: 0px;
+                box-sizing: border-box;
             }
 
             table{
-                width: 50%;
+                width: 40%;
                 padding: 5px;
                 background: #c5e7e0;
                 box-sizing: border-box;
@@ -53,43 +69,41 @@ h3.hidden {
                 text-align: center;
                 border-bottom: 1px solid;
             }
-            
+
             td{ 
                 padding: 7px; 
             }
-            .contenerdor{
-                width: 70%;
-                max-width: 1000px;
+            .contenedor{
+                width: 100%;
+                max-width: 1200px;
                 margin: 0 auto;
                 overflow: hidden;
+                box-sizing: border-box;
             }
+            h3.visible {
+    visibility: visible
+}
+
+h3.hidden {
+    visibility: hidden
+}
 
         </style>
     </head>
     <body>
+        <br>
+        <br>
         <div class="contenedor">
             <div id="head">
                 <h1 align="center"> Perfil </h1>
             </div>
+            <br>
             <div id="panel">
-				
                 <a href="perfil.jsp">Home</a>
                 <br>
-                <form action="anadir" >
-                <h3 class="hidden" name="correo2">${correo}</h3>
-                <br><input type="submit" name="dato" value="Anadir"/><br>
-                </form>
-                <br>
-                <br>
-                <form action="buscar">
-                <input type="submit" name="dato" value="Buscar"/><br>
-                <br>
-                  </form>
+          
                 <br>
                 <br><a href="index.jsp">Salir</a>
-              
-
-
             </div>
             <div id="cont">
                 <img src="picture000.jpg" WIDTH=300 HEIGHT=250 ALT="Imagen" />
@@ -131,6 +145,22 @@ h3.hidden {
                     </tr>                
                 </tbody>
             </table>
+            <br>
+            <br>
+            <div id="pane">
+            <form action ="buscar">
+            <h3 class="hidden" name="correo2">${correo}</h3>
+                <label for="Buscar">   Buscar Persona: </label> <input type="text" name="bpersonas">
+                
+                <input type="submit" value="Buscar"/>
+               
+                </form>
+                <br>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
     </body>
 </html>

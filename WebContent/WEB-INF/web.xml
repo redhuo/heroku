@@ -13,9 +13,9 @@
   <servlet>
     <servlet-name>personServlet</servlet-name>
     <servlet-class>com.example.personServlet</servlet-class>
-</servlet>
-<servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>personServlet</servlet-name>
     <url-pattern>/register</url-pattern>
-</servlet-mapping>
+  </servlet-mapping>
 </web-app>

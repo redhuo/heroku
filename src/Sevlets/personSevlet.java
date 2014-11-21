@@ -86,14 +86,16 @@ public class personSevlet extends HttpServlet {
 			grafo=docu.deserialiize();
 			grafo.addPerson(nodo);
 			docu.serialize(grafo);
+			response.sendRedirect("index.jsp");
 		}
 		catch(Exception e){
 			grafo.addPerson(nodo);
 			docu.deserialiize();
+			response.sendRedirect("index.jsp");
 		}
 		
 		
-		response.sendRedirect("index.jsp");
+		;
 		
 	
 	}

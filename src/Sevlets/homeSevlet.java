@@ -70,7 +70,25 @@ public class homeSevlet extends HttpServlet {
 			System.out.println("GG");
 			mensaje="Bienvenido";
 			//System.out.println(user);
-			response.sendRedirect("perfil.jsp");
+			String name = grafo.searchPerson(user).getName();
+			String correo  = grafo.searchPerson(user).getEmail();
+			String edad  = grafo.searchPerson(user).getAge();
+			String carrera  = grafo.searchPerson(user).getCarear();
+			String carreraA = grafo.searchPerson(user).getAgeCarear();
+			String direccion = "hola";
+			String tel=	grafo.searchPerson(user).getNumberPhone();
+			request.setAttribute("name",name);
+			request.setAttribute("correo",correo);
+			request.setAttribute("edad",edad);
+			request.setAttribute("carrera",carrera);
+			request.setAttribute("direccion",direccion);
+			request.setAttribute("tel",tel);
+			request.setAttribute("carreraA",carreraA);
+			RequestDispatcher requestDispatcher; 
+			requestDispatcher = request.getRequestDispatcher("perfilMain.jsp");
+			requestDispatcher.forward(request, response);
+			
+			
 		}
 
 		

@@ -28,6 +28,15 @@ public class Graph implements Serializable{
         System.out.println(temp.getPerson().getName());
       }
     }
+    
+    public Nodo buscarNodo(String name){
+    	for(Nodo nodo : people){
+    		if(nodo.getPerson().getName() == name){
+    			return nodo;
+    		}
+    	}
+    	return null;
+    }
 
     /**
      * Elimina una persona del grafo y de las amistades
@@ -46,6 +55,12 @@ public class Graph implements Serializable{
       }
 
     }
+    public int getSize(){
+    	return people.size();
+    }
+    public Person getPerson(int i){
+    	return people.get(i).getPerson();
+    }
 
     /**
     * Busca a una persona por su email
@@ -61,6 +76,15 @@ public class Graph implements Serializable{
       }
       return null;
     }
+    public Nodo searchHuman(String name){
+        for(Nodo nodo : people){
+          if(nodo.getPerson().getName().equals(name)){
+          	System.out.println("exito");
+            return nodo;
+          }
+        }
+        return null;
+      }
 
     /**
     * Verifica el login
