@@ -80,6 +80,13 @@
                 overflow: hidden;
                 box-sizing: border-box;
             }
+             h3.visible {
+    visibility: visible
+}
+
+h3.hidden {
+    visibility: hidden
+}
 
         </style>
     </head>
@@ -140,16 +147,24 @@
             </table>
             <br>
             <br>
-            
+            <div id="pane">
+            <form action="agregar">
+               <label for="Buscar">  Agregar Amigo </label> <input type="text" name="bpersonas">
+                <input type="submit" value="Buscar"/>
+                <h3 name="correo">${correo}</h3>
+                </form>
+                <br>
+            </div>
             <br>
             <br>
             <br>
             <br>
 
             <div id="pan">
+           
                 <label for="CaminoMinimo">   Camino más corto: 
-                <label for="personasCerc" name="camino">*-*-*</label> 
-                <br>
+                <label for="personasCerc">*-*-*</label> 
+             
             </div>
         </div>
     </body>

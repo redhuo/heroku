@@ -149,11 +149,11 @@ h3.hidden {
             <br>
             <div id="pane">
             <form action ="buscar">
-            <h3 class="hidden" name="correo2">${correo}</h3>
+            
                 <label for="Buscar">   Buscar Persona: </label> <input type="text" name="bpersonas">
                 
                 <input type="submit" value="Buscar"/>
-               
+               <h3 class="hidden" name="correo2">${correo}</h3>
                 </form>
                 <br>
             </div>

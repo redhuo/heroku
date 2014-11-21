@@ -38,6 +38,7 @@ public class AnadirAmigo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("correo2");
 		String name = request.getParameter("bpersonas");
+		try{
 		serializeObj serial = new serializeObj();
 		
 		Graph grafo = serial.deserialiize();
@@ -91,7 +92,10 @@ public class AnadirAmigo extends HttpServlet {
 		requestDispatcher.forward(request, response);
 		
 		
-	
+		}
+		catch(Exception e){
+			response.sendRedirect("error.jsp");
+		}
 		
 		//personaLog.addFriend(personaBus);
 		
