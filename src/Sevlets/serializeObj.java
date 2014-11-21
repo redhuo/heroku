@@ -1,29 +1,32 @@
 package Sevlets;
 import java.io.*;
-public class serializeObj {
-	public void serialize(Person objeto){
+public class serializeObj{
+	String path = "scr/Sevlets/usuarios.ser";//#{RAILS_ROOT}/tmp/usuarios.ser";// new File("usuarios.ser").getCanonicalPath();
+	
+	
+	public void serialize(Graph objeto){
 	      
 	      try
-	      {
+	      { 
 	         FileOutputStream fileOut =
-	         new FileOutputStream("docs.ser");
+	         new FileOutputStream("usuarios.ser");
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
 	         out.writeObject(objeto);
 	         out.close();
 	         fileOut.close();
-	         System.out.printf("Se serializo en  docs.ser");
+	         System.out.printf("Se serializo en  usuarios.ser en " + path);
 	      }catch(IOException i)
 	      {
 	          i.printStackTrace();
 	      }
 	   }
-	public void deserialiize(){
-		Person e = null;
+	public Graph deserialiize(){
+		Graph e = new Graph();
 	      try
 	      {
-	         FileInputStream fileIn = new FileInputStream("docs.ser");
+	         FileInputStream fileIn = new FileInputStream("usuarios.ser");
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         e = (Person) in.readObject();
+	         e = (Graph) in.readObject();
 	         in.close();
 	         fileIn.close();
 	      }catch(IOException i)
@@ -34,8 +37,8 @@ public class serializeObj {
 	      {
 	         System.out.println("Archivo no encontrado");
 	         c.printStackTrace();
-	         
 	      }
+	      return e;
 
 	    }
 }

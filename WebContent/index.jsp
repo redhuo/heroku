@@ -128,12 +128,12 @@
 <form action="Home" method="post" style="text-align: center">
 <h2>Login</h2><br>
 Username:<br>
-<input type="text" name="usuario"/><br>
+<input type="text" name="email"/><br>
 Password:<br>
 <input type="password" name="password"/><br>
 <input type="submit" value="Login"/>
 </form>
-<a href="index2.jsp">Registarse</a>
+<a href="registrarse.jsp">Registrarse</a>
 <a href="perfil.jsp">Perfil</a>
 </body>
 </html>

@@ -1,6 +1,9 @@
 package Sevlets;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/Home")
 public class homeSevlet extends HttpServlet {
-
+	Graph grafo = new Graph();
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -40,47 +43,50 @@ public class homeSevlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		
+		serializeObj dato = new serializeObj();
+		try{
+			grafo = dato.deserialiize();
+			
+		}
+		catch(Exception e){
+			System.out.println("catch des");
+		}
+		
 		request.setCharacterEncoding("UTF-8");
-		String user = request.getParameter("usuario");
-		String no = request.getParameter("password");
-		String mensaje;
+		String user = request.getParameter("email");
 		System.out.println(user);
-		if (user.equals("hola")){
-			System.out.println(true);
+		
+		String password = request.getParameter("password");
+		
+
+		String mensaje;
+		System.out.println(password);
+		System.out.println("GG1");
+		grafo.getPeopleToString();
+
+		
+		if(grafo.login(user, password)== true){
+			System.out.println("GG");
+			mensaje="Bienvenido";
+			//System.out.println(user);
+			response.sendRedirect("perfil.jsp");
 		}
+
+		
 		else{
-			System.out.println(false);
-		}
-		if (user.equals("")){
 			mensaje= "No ha agregado ningun usario";
 			System.out.println("no sirve");
 			request.setAttribute("mensaje",mensaje);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
-			dispatcher.forward(request, response);
-				
+			
+			response.sendRedirect("error.jsp");
 		}
-		else{
-			if(user.equals("hola") && no.equals("no")){
-				mensaje="Bienvenido";
-				System.out.println(user);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("perfil.jsp");
-				dispatcher.forward(request, response);
-				
-					
-			}
-			else{
-			mensaje="No hay Usuario Registrado";
-			request.setAttribute("mensaje",mensaje);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
-			dispatcher.forward(request, response);
-				
-		}}
-		
 			
 		
 		
 	}
 
-	
+	public static void main(String args[]){
 
+}
 }

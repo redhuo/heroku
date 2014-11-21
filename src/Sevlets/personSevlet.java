@@ -1,6 +1,11 @@
 package Sevlets;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -15,7 +20,7 @@ import javax.swing.JOptionPane;
 /**
  * Servlet implementation class personSevlet
  */
-@WebServlet("/mostrarDatos")
+@WebServlet("/registrarse")
 public class personSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -23,7 +28,7 @@ public class personSevlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
 	Person nuevo;
-    ArrayList <Person> lista =  new ArrayList<Person>();
+    
     
     public personSevlet() {
         super();
@@ -35,37 +40,24 @@ public class personSevlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*String nombre= request.getParameter("nombre");
+		/*String nombre= request.getParameter("nombre")+" "+request.getParameter("apellido") ;
 		String edad = request.getParameter("edad");
 		String carrera = "estudiante";
 		String ageCarrera="dos";
 		String numTel = request.getParameter("telefono");
 		String direccion = request.getParameter("direccion");
 		String email = request.getParameter("correo");
-		System.out.println(nombre);
-		nuevo = new Person(nombre,edad,carrera,ageCarrera,numTel,direccion,email);
-		lista.add(nuevo);
-		String sql = "";
-		baseDatos dateBase = new baseDatos();
-		Connection conectar;
-		try {
-				conectar = dateBase.conectar();
-				sql = "INSERT INTO datos_personales (Nombre, Apellido, Edad, Direccion, telefono, carrera, sexo) VALUES (?,?,?,?,?,?,?)";
-				PreparedStatement prepare = conectar.prepareStatement(sql);
-				prepare.setString(1, nombre);
-				prepare.setString(2, email);
-				prepare.setString(3, edad);
-				prepare.setString(4, direccion);
-				prepare.setString(5, numTel);
-				prepare.setString(6, carrera);
-				prepare.setString(7, ageCarrera);
-				prepare.executeUpdate();
-				
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		String contrasena = request.getParameter("password");
+		String no = "hola";
+	
 		
+		nuevo = new Person(nombre,edad,carrera,numTel,direccion,email,no,contrasena);
+		Nodo nodo = new Nodo(nuevo);
+		//System.out.println(nodo.getPerson().getEmail());
+		grafo.addPerson(nodo);
+		
+		response.sendRedirect("/index.jsp");
+		*/
 		
 	}
 
@@ -75,47 +67,35 @@ public class personSevlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-			String nombre= request.getParameter("nombre");
-			String edad = request.getParameter("edad");
-			String carrera = "estudiante";
-			String ageCarrera="dos";
-			String numTel = request.getParameter("telefono");
-			String direccion = request.getParameter("direccion");
-			String email = request.getParameter("correo");
-			System.out.println(nombre);
-			nuevo = new Person(nombre,edad,carrera,ageCarrera,numTel,direccion,email);
-			serializeObj archivo =  new serializeObj();
-			archivo.serialize(nuevo);
-			//lista.add(nuevo);
-			/*String sql = "";
-			baseDatos dateBase = new baseDatos();
-			Connection conectar;
-			try {
-					conectar = dateBase.conectar();
-					sql = "INSERT INTO datos (Nombre, Apellido, Edad, Direccion, telefono, carrera, sexo) VALUES (?,?,?,?,?,?,?)";
-					PreparedStatement prepare = conectar.prepareStatement(sql);
-					prepare.setString(1, nombre);
-					prepare.setString(2, email);
-					prepare.setString(3, edad);
-					prepare.setString(4, direccion);
-					prepare.setString(5, numTel);
-					prepare.setString(6, carrera);
-					prepare.setString(7, ageCarrera);
-					prepare.executeUpdate();
-					
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		String nombre= request.getParameter("nombre")+" "+request.getParameter("apellido") ;
+		String edad = request.getParameter("edad");
+		String carrera = request.getParameter("carrera");
+		String ageCarrera=request.getParameter("aCarrera");
+		String numTel = request.getParameter("telefono");
+		String direccion = request.getParameter("direccion");
+		String email = request.getParameter("correo");
+		String contrasena = request.getParameter("password");
 		
-		/*String test = lista.get(0).getName();
+	
 		
-		String mensaje;
-		mensaje= "Hola "+test;
-		request.setAttribute("mensaje",mensaje);*/
-		//System.out.println(nombre);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
-		dispatcher.forward(request, response);
+		nuevo = new Person(nombre,edad,carrera,ageCarrera,numTel,direccion,email,contrasena);
+		Nodo nodo = new Nodo(nuevo);
+		serializeObj docu = new serializeObj();
+		Graph grafo = new Graph();
+		try{
+			grafo=docu.deserialiize();
+			grafo.addPerson(nodo);
+			docu.serialize(grafo);
+		}
+		catch(Exception e){
+			grafo.addPerson(nodo);
+			docu.deserialiize();
+		}
+		
+		
+		response.sendRedirect("index.jsp");
+		
+	
 	}
 
 }
